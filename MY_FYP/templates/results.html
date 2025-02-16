@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vis-network/styles/vis-network.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vis-network/"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f7f9fb;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #2E7D32;
+        }
+
+        table {
+            margin: 20px auto;
+            width: 90%;
+            border-collapse: collapse;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+
+        #graph {
+            width: 90%;
+            height: 400px;
+            margin: 20px auto;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+        }
+
+        .back-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .back-button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Search Results</h1>
+
+    <!-- Table Section -->
+    <table>
+        <thead>
+            <tr>
+                <th>Plant Name</th>
+                <th>Scientific Name</th>
+                <th>Family</th>
+                <th>Phytochemicals and Their Properties</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Aloe Vera</td>
+                <td>Aloe barbadensis miller</td>
+                <td>Asphodelaceae</td>
+                <td>Contains Aloin: Anti-cancer properties</td>
+            </tr>
+        </tbody>
+    </table>
+
+ 
+    <h2>Graph of Plant-Phytochemical Relationships</h2>
+    <div id="graph"></div>
+
+    <script>
+      
+        var nodes = new vis.DataSet([
+            { id: 1, label: "Aloe Vera" },
+            { id: 2, label: "Aloin" }
+        ]);
+
+        var edges = new vis.DataSet([
+            { from: 1, to: 2, label: "Anti-cancer properties" }
+        ]);
+
+        // Create the graph visualization
+        var container = document.getElementById("graph");
+        var data = { nodes: nodes, edges: edges };
+        var options = {
+            nodes: { shape: "dot", size: 20 },
+            edges: { width: 2, arrows: "to" },
+            physics: { enabled: true }
+        };
+        var network = new vis.Network(container, data, options);
+    </script>
+
+
+    <button class="back-button" onclick="goBack()">Go Back</button>
+
+    <script>
+        function goBack() {
+            window.history.back();
+        }
+    </script>
+
+</body>
+</html>
